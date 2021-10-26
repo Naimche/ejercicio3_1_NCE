@@ -25,6 +25,6 @@ var c1 = Coche("Rosa", "Audi", "R8", 512, 2, "12832GCV")
 var c2 = Coche("Blanco","bmw","i8", 374, 3, "672376ASD")
     println(c2.descripcion())
     c1.color = solicitarNuevoColor()
-    println(c2.descripcion())
+    println(c1.descripcion())
 
 }
