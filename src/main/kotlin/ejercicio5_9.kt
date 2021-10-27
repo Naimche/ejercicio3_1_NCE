@@ -1,4 +1,4 @@
-class Cuenta(val numCuenta: Int, var saldo: Int) {
+class Cuenta(val numCuenta: String, var saldo: Double = 0.0) {
     fun consultarSaldo(): String {
         return "Tienes $saldo€"
     }
@@ -22,13 +22,34 @@ class Cuenta(val numCuenta: Int, var saldo: Int) {
     }
 }
 
-class Persona(val DNI: String, var cuentas: Array<Cuenta?>) {
-
+class Persona(val DNI: String) {
+    var cuentas: Array<Cuenta> = arrayOf()
+    fun incorporar(c: Cuenta) {
+        if (cuentas.size < 3) {
+            cuentas += c
+        }
     }
+
+    fun esMoroso(): Boolean {
+        for (i in 0..2) {
+            if (cuentas[i]!!.saldo < 0) {
+                return true
+            }
+        }
+        return false
+    }
+}
 
 
 fun main() {
-    val persona1 = Persona("75740978H", arrayOfNulls(3))
-    persona1.cuentas= listOf<Cuenta>(Cuenta(987766553, 0), Cuenta(726767623, 700)).toTypedArray()
-    persona1.cuentas =
+    var p1 = Persona("2132312h")
+    var c1 = Cuenta("Num1", 0.0)
+    var c2 = Cuenta("Num2", 700.0)
+    p1.incorporar(c1)
+    p1.incorporar(c2)
+    c1.recibirAbonos(1100)
+    c2.realizarPago(750)
+    if (p1.esMoroso() == true) {
+        println("La persona con dni ${p1.DNI} moroso/a")
+    }
 }
