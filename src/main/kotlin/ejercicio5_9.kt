@@ -48,14 +48,11 @@ class Persona(val DNI: String) {
 fun main() {
     var p1 = Persona("2132312h")
     var c1 = Cuenta("Num1", 0.0)
-    var c2 = Cuenta("Num2", 750.0)
-    var c3 = Cuenta("Num1", 0.0)
-    var c4 = Cuenta("Num2", 750.0)
+    var c2 = Cuenta("Num2", 700.0)
+
     p1.incorporar(c1)
     p1.incorporar(c2)
 
-    p1.incorporar(c3)
-    p1.incorporar(c4)
     c1.recibirAbonos(1100.0)
     c2.realizarPago(750.0)
 
