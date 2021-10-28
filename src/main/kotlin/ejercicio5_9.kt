@@ -1,9 +1,6 @@
 import java.lang.NullPointerException
 
 class Cuenta(val numCuenta: String, var saldo: Double = 0.0) {
-    fun consultarSaldo(): String {
-        return "Tienes $saldo€"
-    }
 
     fun recibirAbonos(abono: Double): Double {
         saldo += abono
@@ -19,9 +16,9 @@ class Cuenta(val numCuenta: String, var saldo: Double = 0.0) {
 class Persona(val DNI: String) {
     private var contador: Int = 0
     var cuentas: Array<Cuenta?> = arrayOfNulls(3)
-    fun incorporar(c: Cuenta) {
+    fun incorporate(c: Cuenta) {
         if (contador < 3){
-        cuentas.set(contador, c)
+            cuentas[contador] = c
         contador++
     }}
 
@@ -50,8 +47,8 @@ fun main() {
     var c1 = Cuenta("Num1", 0.0)
     var c2 = Cuenta("Num2", 700.0)
 
-    p1.incorporar(c1)
-    p1.incorporar(c2)
+    p1.incorporate(c1)
+    p1.incorporate(c2)
 
     c1.recibirAbonos(1100.0)
     c2.realizarPago(750.0)
