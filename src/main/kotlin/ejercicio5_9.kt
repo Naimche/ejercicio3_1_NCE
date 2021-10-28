@@ -20,10 +20,10 @@ class Persona(val DNI: String) {
     private var contador: Int = 0
     var cuentas: Array<Cuenta?> = arrayOfNulls(3)
     fun incorporar(c: Cuenta) {
-
+        if (contador < 3){
         cuentas.set(contador, c)
         contador++
-    }
+    }}
 
     fun esMoroso(): Boolean {
         for (i in 0..2) {
@@ -49,8 +49,13 @@ fun main() {
     var p1 = Persona("2132312h")
     var c1 = Cuenta("Num1", 0.0)
     var c2 = Cuenta("Num2", 750.0)
+    var c3 = Cuenta("Num1", 0.0)
+    var c4 = Cuenta("Num2", 750.0)
     p1.incorporar(c1)
     p1.incorporar(c2)
+
+    p1.incorporar(c3)
+    p1.incorporar(c4)
     c1.recibirAbonos(1100.0)
     c2.realizarPago(750.0)
 
