@@ -11,21 +11,63 @@ class Libros(val titulo: String, val autor: String, val numerodepaginas: Long, c
     }
 }
 
-class ConjuntoLibros(var nombre: String,val tamanio:Int,var conjunto: Array<Libros?> = arrayOfNulls(tamanio)) {
-    var contador:Int = 0
+class ConjuntoLibros(val tamanio: Int, var conjunto: Array<Libros?> = arrayOfNulls(tamanio)) {
+    var contador: Int = 0
     fun incorporar(c: Libros) {
         if (contador < tamanio) {
             conjunto[contador] = c
             contador++
-        }
+        } else ("El conjunto esta lleno")
     }
-   }
+
+    fun eliminarPorTitulo(a: String): Boolean {
+        for (i in 0 until tamanio) {
+            if (conjunto[i]?.titulo == a) {
+                conjunto[i] = null
+                return true
+            }
+        }
+        return false
+    }
+
+    fun eliminarPorAutor(b: String): Boolean {
+        for (i in 0 until tamanio) {
+            if (conjunto[i]?.autor == b) {
+                conjunto[i] = null
+                return true
+            }
+        }
+        return false
+    }
+
+    fun mostrarLibrosAlmacenados(): String {
+
+        for (i in 0 until tamanio) {
+            if (conjunto[i]?.titulo !== null) {
+                println(conjunto[i]?.titulo)
+            }
+        }
+        return "Todos los libros mostrados"
+    }
+}
 
 fun main() {
-    var conjunto= ConjuntoLibros("Ficcion",3)
+    var a: String
+    var conjunto = ConjuntoLibros(3)
     var l1 = Libros("Diario de Ana Frank", "Ana Frank", 215L, 8)
-    var l2 = Libros("adasd","adads", 1212L, 2)
+    var l2 = Libros("Harry Potter", "JK", 652L, 2)
+    println("Incorporamos los dos libros")
     conjunto.incorporar(l1)
     conjunto.incorporar(l2)
-    println(1)
+    repeat(80) { print("*") }
+    println()
+    println("Eliminamos los dos libros")
+    conjunto.eliminarPorTitulo("Harry Potter")
+    conjunto.eliminarPorAutor("Ana Frank")
+    repeat(80) { print("*") }
+    println()
+    println("AÑADIMOS UN LIBRO Y MOSTRAMOS TODOS LOS LIBROS ALMACENADOS:")
+    conjunto.incorporar(l1)
+    conjunto.mostrarLibrosAlmacenados()
+    repeat(80) { print("*") }
 }
