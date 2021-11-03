@@ -20,11 +20,7 @@ class ConjuntoLibros(val tamanio: Int, var conjunto: Array<Libros?> = arrayOfNul
                 contador++
             } else contador = 0
         }
-        try {
-            conjunto[contador] = c
-        } catch (e: ArrayIndexOutOfBoundsException) {
-            "Libreria LLena"
-        }
+        conjunto[contador] = c
     }
 
     fun eliminarPorTitulo(a: String): Boolean {
