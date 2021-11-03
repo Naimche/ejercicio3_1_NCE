@@ -14,10 +14,17 @@ class Libros(val titulo: String, val autor: String, val numerodepaginas: Long, c
 class ConjuntoLibros(val tamanio: Int, var conjunto: Array<Libros?> = arrayOfNulls(tamanio)) {
     var contador: Int = 0
     fun incorporar(c: Libros) {
-        if (contador < tamanio) {
+        contador = 0
+        while (conjunto[contador] != null) {
+            if (contador < tamanio) {
+                contador++
+            } else contador = 0
+        }
+        try {
             conjunto[contador] = c
-            contador++
-        } else ("El conjunto esta lleno")
+        } catch (e: ArrayIndexOutOfBoundsException) {
+            "Libreria LLena"
+        }
     }
 
     fun eliminarPorTitulo(a: String): Boolean {
